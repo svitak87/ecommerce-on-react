@@ -221,7 +221,9 @@ body {
 }
 
 .form-group {
+    position: relative;
     margin-bottom: 1.5rem;
+
 }
 
 .form-label {
@@ -238,6 +240,7 @@ body {
     border-radius: 4px;
     font-size: 1rem;
     transition: border-color 0.2s;
+    margin-bottom: 1rem;
 }
 
 .form-input:focus {
@@ -246,10 +249,10 @@ body {
 }
 
 .form-error {
-    display: block;
+    display: absolute;
     color: #dc3545;
     font-size: 0.875rem;
-    margin-top: 0.25rem;
+    margin-top: 0.10rem;
 }
 
 .error-message {
@@ -271,6 +274,7 @@ body {
     color: #007bff;
     text-decoration: none;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .auth-link:hover {

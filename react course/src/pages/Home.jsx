@@ -15,10 +15,9 @@ const Home = () => {
                 <h2 className="page-title">Our products</h2>
                 <div className="product-grid">
                     {products && products.map((product) => (
-                        <div className="product-card">
+                        <div className="product-card" key={product.id}>
                             <ProductCard
                                 product={product}
-                                key={product.id}
                             />
                         </div>
                     ))}
