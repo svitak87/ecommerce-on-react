@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
-import { getProductById } from '../data/products';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
     const { image, name, price, id } = product;
+    const { addToCart, cartItems } = useContext(CartContext);
+    const productsInCart = cartItems.find((item) => Number(item.id) === id)
+    const productsQuantityLabel = productsInCart ? `(${productsInCart.quantity})` : "";
     
     return (
         <div className="product-card">
@@ -20,7 +23,11 @@ const ProductCard = ({ product }) => {
                     <Link className="btn btn-secondary" to={`/details/${id}`}>
                         View details
                     </Link>
-                    <button className="btn btn-secondary">Add to cart</button>
+                    <button
+                        className="btn btn-secondary"
+                        onClick={() => addToCart(id)}>
+                        Add to cart {productsQuantityLabel}
+                    </button>
                 </div>
             </div>
 
