@@ -2,31 +2,38 @@
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from "../context/AuthContext";
-
+import { useNavigate } from "react-router-dom"
 
 //components
 import Input from '../components/Input';
 import Label from '../components/Label';
 import Button from '../components/Button';
+import ErrorPopUp from '../components/ErrorPopUp';
 
 const Auth = () => {
   const [mode, setMode] = useState("Sign Up");
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { signUp, signIn } = useContext(AuthContext)
+  const { signUp, signIn, error, user, logOut } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
-    let process = null
-    if(mode === "Sign Up"){
-      process = signUp(data.email, data.password)
-    }else{
-      process = signIn(data.email, data.password)
+    let result;
+    if (mode === "Sign Up") {
+      result = signUp(data.email, data.password)
+
+    } else {
+      result = signIn(data.email, data.password)
+      if (result.success) {
+        navigate("/")
+      }
     }
-    return process;
   }
 
   return (
     <div className="page">
       <div className="container">
+        {user && <p>{"user registered succesfully " + user.email}</p>}
+        <button onClick={logOut}>LogOut</button>
         <div className="auth-container">
           <h1 className="page-title">{mode === "Sign Up" ? "Sign Up" : "Sign In"}</h1>
           <form action="submit" className="auth-form" onSubmit={handleSubmit(onSubmit)}>
@@ -84,6 +91,7 @@ const Auth = () => {
             )}
           </div>
         </div>
+        {error && <ErrorPopUp />}
       </div >
     </div >
   )
