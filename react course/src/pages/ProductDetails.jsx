@@ -6,7 +6,6 @@ const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate()
     const [product, setProduct] = useState({})
-    // const { name, price, image, description } = product;
 
     useEffect(() => {
         const handleDetails = () => {

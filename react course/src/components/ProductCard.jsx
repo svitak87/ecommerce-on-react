@@ -5,16 +5,7 @@ import { getProductById } from '../data/products';
 
 const ProductCard = ({ product }) => {
     const { image, name, price, id } = product;
-    const navigate = useNavigate();
-
-    const handleDetails = () => {
-        let result;
-        result = getProductById(id);
-
-        if (result) {
-            navigate(`/details/${id}`)
-        }
-    }
+    
     return (
         <div className="product-card">
             <img
