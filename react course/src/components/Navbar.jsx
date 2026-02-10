@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
     return (
         <nav className="navbar">
             <div className="navbar-container">
@@ -11,7 +15,7 @@ const Navbar = () => {
                     <Link to="/" className="navbar-link">Home</Link>
                     <Link to="/checkout" className="navbar-link">Cart</Link>
                 </div>
-                <div className="navbar-auth">
+                {!user ? <div className="navbar-auth">
                     <div className="navbar-auth-links">
                         <Link to="/auth" className="btn btn-secondary">
                             Login
@@ -20,7 +24,12 @@ const Navbar = () => {
                             Sing Up
                         </Link>
                     </div>
-                </div>
+                </div> : (
+                    <div className="navbar-user">
+                        <span className="navbar-greeting">Hello, {user.email}</span>
+                        <button className="btn btn-secondary"onClick={logOut}>Log Out</button>
+                    </div>
+                )}
             </div>
         </nav>
     )

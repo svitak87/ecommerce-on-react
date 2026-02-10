@@ -13,7 +13,7 @@ import ErrorPopUp from '../components/ErrorPopUp';
 const Auth = () => {
   const [mode, setMode] = useState("Sign Up");
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { signUp, signIn, error, user, logOut } = useContext(AuthContext)
+  const { signUp, signIn, error } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const onSubmit = (data) => {
@@ -32,8 +32,6 @@ const Auth = () => {
   return (
     <div className="page">
       <div className="container">
-        {user && <p>{"user registered succesfully " + user.email}</p>}
-        <button onClick={logOut}>LogOut</button>
         <div className="auth-container">
           <h1 className="page-title">{mode === "Sign Up" ? "Sign Up" : "Sign In"}</h1>
           <form action="submit" className="auth-form" onSubmit={handleSubmit(onSubmit)}>
