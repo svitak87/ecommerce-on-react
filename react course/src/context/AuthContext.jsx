@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("currentUserEmail");
     setUser(null)
   }
-
+  console.log(user)
   return (
     <AuthContext.Provider value={{ signUp, signIn, user, setUser, setPopUp, error, logOut }}>
       {children}

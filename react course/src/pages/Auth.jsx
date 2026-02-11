@@ -11,7 +11,7 @@ import Button from '../components/Button';
 import ErrorPopUp from '../components/ErrorPopUp';
 
 const Auth = () => {
-  const [mode, setMode] = useState("Sign Up");
+  const [mode, setMode] = useState("Sign In");
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { signUp, signIn, error } = useContext(AuthContext)
   const navigate = useNavigate()

@@ -1,5 +1,8 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
+import ProtectedRoutes from './components/ProtectedRoutes'
+
+//components
 import Home from './pages/Home'
 import Auth from './pages/Auth'
 import Checkout from './pages/Checkout'
@@ -16,11 +19,14 @@ function App() {
         <div className="App">
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/details/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
+
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/details/:id" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} />
+            </Route>
           </Routes>
         </div>
       </CartProvider>
